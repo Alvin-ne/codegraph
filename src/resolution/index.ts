@@ -670,7 +670,6 @@ export class ReferenceResolver {
         kind,
         line: ref.original.line,
         column: ref.original.column,
-        provenance: 'resolver',
         metadata: {
           confidence: ref.confidence,
           resolvedBy: ref.resolvedBy,
@@ -708,15 +707,6 @@ export class ReferenceResolver {
     }
 
     return result;
-  }
-
-  /**
-   * Re-run whole-graph heuristic edge synthesis after an incremental resolve.
-   * The synthesizer is additive and idempotent as long as prior heuristic edges
-   * for the affected files were cleared first by the caller.
-   */
-  synthesizeHeuristicEdges(): number {
-    return synthesizeCallbackEdges(this.queries, this.context);
   }
 
   /**
